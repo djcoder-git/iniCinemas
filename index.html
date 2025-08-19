@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie List</title>
-<style>
-    body { font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 20px; }
-    .movie-container { border: 1px solid #ccc; background-color: #fff; padding: 15px; margin-bottom: 20px; display: flex; flex-wrap: wrap; align-items: flex-start; }
-    .poster { width: 150px; margin-right: 15px; position: relative; }
-    .poster img { width: 100%; display: block; }
-    .youtube-icon { position: absolute; top: 50%; left: -35px; transform: translateY(-50%); width: 30px; height: 30px; }
-    .movie-details { flex: 1; }
-    .movie-title { text-align: center; font-weight: bold; font-size: 1.5em; margin: 10px 0; }
-    .synopsis { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-bottom: 10px; }
-    .info { margin-bottom: 5px; }
-    .poster-link { display: block; margin-top: 5px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Listings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 20px;
+    }
+    .movie-card {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .movie-poster img {
+      width: 120px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .movie-info h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .status {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .genre {
+      color: #444;
+      font-style: italic;
+    }
+    .synopsis {
+      margin: 8px 0;
+      color: #555;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* show max 3 lines */
+      -webkit-box-orient: vertical;
+    }
+    .cast, .runtime {
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .trailer {
+      margin-top: 8px;
+      text-align: right;
+    }
+    .trailer a img {
+      width: 50px;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
 
-<div id="movies"></div>
+  <h1>Movie Listings</h1>
 
-<script>
-const movies = [
-	  {"status": "now-showing", "name": "War 2", "genre": "Action, Thriller, Adventure", "synopsis": "Sequel to the 2019 action-thriller film \"War\".\n6th Movie of the YRF Spy Universe after Ek Tha Tiger, Tiger Zinda Hai, War, Pathan, and Tiger 3.", "director": "", "cast": ["Hrithik Roshan, N.T. R. Jr, Kiara Advani", "August 14, 2025", "2 hours 59 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/War2_620x780_219318.png", "runtime": "2 hours 59 mins", "trailer": "https://youtu.be/mjBym9uKth4?feature=shared"},
+  <div id="movies-container"></div>
+
+  <script>
+    const movies = [
+      {"status": "now-showing", "name": "War 2", "genre": "Action, Thriller, Adventure", "synopsis": "Sequel to the 2019 action-thriller film \"War\".\n6th Movie of the YRF Spy Universe after Ek Tha Tiger, Tiger Zinda Hai, War, Pathan, and Tiger 3.", "director": "", "cast": ["Hrithik Roshan, N.T. R. Jr, Kiara Advani", "August 14, 2025", "2 hours 59 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/War2_620x780_219318.png", "runtime": "2 hours 59 mins", "trailer": "https://youtu.be/mjBym9uKth4?feature=shared"},
       {"status": "now-showing", "name": "Mohar", "genre": "Social Drama, Romance, Thriller, Suspense", "synopsis": "The film Mohar is a story about an unwritten rule. It attempts to portray the obstacles faced by Sarkar Chand (Arjun Jung Shahi) as he tries to continue the \"Deuki custom,\" which has prevailed for generations in the far-western region of Nepal, in the hope of securing fortune and legacy for his offspring. The film features Paul Shah, Benisha Hamal, Niti Shah, Sara Sharma, and others in major roles. It conveys the message that this practice still exists today.", "director": "", "cast": ["Paul Shah, Niti Shah, Benisha Hamal, Arjun Jung Sahi", "August 08, 2025", "2 hours 18 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/Mohar_620x780_N_489900.png", "runtime": "2 hours 18 mins", "trailer": "https://youtu.be/COxFguJ1Q2Y?si=Oj3Prm8j8t_In9GX"},
 	  {"status": "now-showing", "name": "Coolie", "genre": "Action", "synopsis": "Delves into a man's relentless quest for vengeance since youth, driven by righting past wrongs, shaping his very existence. Viewers experience the complexities of his tumultuous vendetta journey.", "director": "", "cast": ["Rajnikant, Nagarajuna, Satyaraj, Shruti Haassan, Aamir Khan", "August 14, 2025", "2 hours 50 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/Coolie_620x780_N_296813.png", "runtime": "2 hours 50 mins", "trailer": "https://youtu.be/5-qi2TGQ4a4?si=4vjbjYFzKC1VB0h8"},
 	  {"status": "coming-soon", "name": "Jaari 2", "genre": "Drama", "synopsis": "Jaari 2 follows Namsang and Hangma as they embark on a new chapter of married life...", "cast": ["Dayahang Rai, Miruna Magar, Bijay Baral, Buddhi Tamang", "September 19, 2025", "2 hours 15 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/poster_550449.png", "runtime": "2 hours 15 mins", "trailer": "https://youtu.be/Lk5klPgwbCc?si=JdQNrpAK_x2E4_Ci"},
@@ -37,31 +87,45 @@ const movies = [
 	  {"status": "next-release", "name": "Maagne Raja", "genre": "Comedy", "synopsis": "Kuber Sharma aka Maagne,  debt-ridden man drowning under the weight of financial burdens, sees no way out of his grim reality—until a sudden and mysterious windfall changes everything. But as Sharma attempts to retreat into a quiet existence, his newfound fortune draws attention from people.Caught in a web of deception, greed, and moral dilemmas, Maagne must confront a harsh truth: escaping poverty was just the beginning—surviving wealth is the real challenge", "director": "", "cast": ["Kedar Ghimire, Barsha Shiwakoti, Wilson Bikram Rai, Shishir Wangdel", "August 22, 2025", "2 hours 29 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/MR_620x780_249131.png", "runtime": "2 hours 29 mins", "trailer": "https://youtu.be/x2QZl1dqWbY?feature=shared"},
 	  {"status": "next-release", "name": "Taraharu", "genre": "Social drama", "synopsis": "Taraharu is a story of those who bring the light of life for a person messed up in completely dark circumstances.", "director": "", "cast": ["Menuka pradhan, Avash adhakari, Mira khadka", "August 22, 2025", "2 hours 29 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Taraharu_620x780_524945.png", "runtime": "2 hours 29 mins", "trailer": "https://youtu.be/OrrpEg_Yosg?feature=shared"},
 	  {"status": "next-release", "name": "Janai Harayeko Manche", "genre": "Comedy Drama", "synopsis": "Janai harayeko manche is a story of migration, longing, and rediscovery. It’s a cinematic ode to the everyday Nepali a man with a suitcase full of dreams, a pocket full of regrets, and a heart finally ready to embrace the home he tried to leave behind.", "director": "", "cast": ["Vijay Baral, Keki Adhikari, Miruna Magar", "August 22, 2025", "2 hours 23 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/JHKM_620x780_982247.png", "runtime": "2 hours 23 mins", "trailer": "https://youtu.be/bJl4i00eOas?feature=shared"}
-];
+    ];
 
-const movieContainer = document.getElementById('movies');
+    const container = document.getElementById('movies-container');
 
-movies.forEach(movie => {
-    const div = document.createElement('div');
-    div.className = 'movie-container';
-    div.innerHTML = `
-        <div class='poster'>
-            <a href='${movie.poster}' target='_blank'><img src='${movie.poster}' alt='${movie.name} poster'></a>
-            <a href='${movie.trailer}' target='_blank'><img class='youtube-icon' src='https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png' alt='YouTube'></a>
+    movies.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'movie-card';
+
+      // Poster
+      const posterDiv = document.createElement('div');
+      posterDiv.className = 'movie-poster';
+      const posterLink = document.createElement('a');
+      posterLink.href = movie.poster;
+      posterLink.target = '_blank';
+      posterLink.innerHTML = `<img src="${movie.poster}" alt="${movie.name}">`;
+      posterDiv.appendChild(posterLink);
+
+      // Info
+      const infoDiv = document.createElement('div');
+      infoDiv.className = 'movie-info';
+      infoDiv.innerHTML = `
+        <div class="status">${movie.status}</div>
+        <h2>${movie.name}</h2>
+        <div class="genre">${movie.genre}</div>
+        <p class="synopsis">${movie.synopsis}</p>
+        <div class="cast"><strong>Cast:</strong> ${movie.cast[0]}</div>
+        <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
+        <div class="trailer">
+          <a href="${movie.trailer}" target="_blank">
+            <img src="https://www.iconsdb.com/icons/preview/red/youtube-xxl.png" alt="YouTube Icon">
+          </a>
         </div>
-        <div class='movie-details'>
-            <div class='movie-title'>${movie.name || ''}</div>
-            <div class='info'><strong>Status:</strong> ${movie.status || ''}</div>
-            <div class='info'><strong>Genre:</strong> ${movie.genre || ''}</div>
-            <div class='synopsis'>${movie.synopsis || ''}</div>
-            <div class='info'><strong>Cast:</strong> ${movie.cast.join(', ')}</div>
-            <div class='info'><strong>Runtime:</strong> ${movie.runtime || ''}</div>
-            <div class='poster-link'><a href='${movie.poster}' target='_blank'>View Poster</a></div>
-        </div>
-    `;
-    movieContainer.appendChild(div);
-});
-</script>
+      `;
+
+      card.appendChild(posterDiv);
+      card.appendChild(infoDiv);
+      container.appendChild(card);
+    });
+  </script>
 
 </body>
 </html>
