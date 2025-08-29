@@ -9,7 +9,47 @@
       font-family: Arial, sans-serif;
       background: #f4f4f4;
       margin: 20px;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
+
+    /* Dark mode */
+    body.dark {
+      background: #121212;
+      color: #fff; /* white text */
+    }
+    body.dark .movie-card {
+  background: #1e1e1e;
+}
+
+body.dark .movie-info h2,
+body.dark .genre,
+body.dark .synopsis,
+body.dark .cast,
+body.dark .runtime {
+  color: #fff; /* force white */
+}
+    body.dark h1 {
+      color: #fff;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .toggle-btn:hover {
+      background: #555;
+    }
+
     .movie-card {
       background: white;
       border-radius: 12px;
@@ -20,6 +60,7 @@
       grid-template-columns: 120px 1fr;
       gap: 16px;
       align-items: flex-start;
+      transition: background 0.3s;
     }
     .movie-poster img {
       width: 120px;
@@ -30,14 +71,25 @@
       margin: 0;
       font-size: 1.4rem;
       font-weight: bold;
-      color: #333;
     }
     .status {
       font-size: 0.9rem;
       font-weight: bold;
-      color: #666;
       margin-bottom: 6px;
+      color: #666;
     }
+
+    /* Animate NOW SHOWING */
+    .status.now-showing {
+      color: #e63946;
+      animation: moveRight 1.5s infinite;
+    }
+    @keyframes moveRight {
+      0%   { transform: translateX(0); }
+      50%  { transform: translateX(8px); }
+      100% { transform: translateX(0); }
+    }
+
     .genre {
       color: #444;
       font-style: italic;
@@ -47,7 +99,7 @@
       color: #555;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3; /* show max 3 lines */
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
     .cast, .runtime {
@@ -59,21 +111,22 @@
       text-align: left;
     }
     .trailer a img {
-      width: 50px;
+      width: 28px;
       height: auto;
-      border-radius: 8px;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Movie Listings</h1>
+  <h1>ini Cinemas</h1>
+  <button class="toggle-btn" id="toggleMode">🌙 Dark Mode</button>
 
   <div id="movies-container"></div>
 
   <script>
     const movies = [
-{"status": "NOW SHOWING", "name": "Vash Level 2", "genre": "Thriller", "synopsis": "Tweleve years after saving his daughter Arya from a dark force, Atharva learns it never left her. When strange events begin again, he must fight to save her once more.", "director": "", "cast": ["Janki Bodiwala, Monal Gajjar", "August 27, 2025", "1 hours 44 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/VashLevel2_620x780_753697.jpg", "runtime": "1 hours 44 mins", "trailer": "https://youtu.be/OhpIDAkPACA?si=HwZTxKuu4_mMOqm9"},
+      {"status": "NOW SHOWING", "name": "Vash Level 2", "genre": "Thriller", "synopsis": "Tweleve years after saving his daughter Arya from a dark force, Atharva learns it never left her. When strange events begin again, he must fight to save her once more.", "director": "", "cast": ["Janki Bodiwala, Monal Gajjar", "August 27, 2025", "1 hours 44 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/VashLevel2_620x780_753697.jpg", "runtime": "1 hours 44 mins", "trailer": "https://youtu.be/OhpIDAkPACA?si=HwZTxKuu4_mMOqm9"},
 {"status": "NOW SHOWING", "name": "Param Sundari", "genre": "Romance", "synopsis": "In Kerala's picturesque backwaters, a North Indian and South Indian find unexpected love. Their cultural differences spark a hilarious and chaotic romance, full of twists and turns. Two diverse worlds collide in a heartwarming story.", "director": "", "cast": ["Sidharth Malhotra, Janhvi Kapoor, Sanjay Kapoor", "August 29, 2025", "2 hours 16 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/Poster_187954.png", "runtime": "2 hours 16 mins", "trailer": "https://youtu.be/fdWnfzsx-ks?si=dywhAs8CRp7mQPCy"},
 {"status": "NOW SHOWING", "name": "Maagne Raja", "genre": "Comedy", "synopsis": "Kuber Sharma aka Maagne,  debt-ridden man drowning under the weight of financial burdens, sees no way out of his grim reality—until a sudden and mysterious windfall changes everything. But as Sharma attempts to retreat into a quiet existence, his newfound fortune draws attention from people.Caught in a web of deception, greed, and moral dilemmas, Maagne must confront a harsh truth: escaping poverty was just the beginning—surviving wealth is the real challenge", "director": "", "cast": ["Kedar Ghimire, Barsha Shiwakoti, Wilson Bikram Rai, Shishir Wangdel", "August 22, 2025", "2 hours 29 mins"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/MR_620x780_249131.png", "runtime": "2 hours 29 mins", "trailer": "https://youtu.be/x2QZl1dqWbY?feature=shared"},
 {"status": "NOW SHOWING", "name": "Koshedhunga", "genre": "Drama", "synopsis": "Koshedhunga follows Sital, a woman torn between love, hardship, and survival in a mid-hill village of Nepal, as her husband migrates to the Gulf-exploring sacrifice, unemployment, and the price of dreams.", "director": "", "cast": ["Surakshya Panta, Niti Shah, Reecha Sharma, Aaryan Sigdel", "August 28, 2025", "2 hours"], "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/POSTER_567486.png", "runtime": "2 hours", "trailer": "https://youtu.be/SYZ1EKN-ClU?si=AJv4H_gYOuq6cFRs"},
@@ -108,7 +161,7 @@
       const infoDiv = document.createElement('div');
       infoDiv.className = 'movie-info';
       infoDiv.innerHTML = `
-        <div class="status">${movie.status}</div>
+        <div class="status ${movie.status === "NOW SHOWING" ? "now-showing" : ""}">${movie.status}</div>
         <h2>${movie.name}</h2>
         <div class="genre">${movie.genre}</div>
         <p class="synopsis">${movie.synopsis}</p>
@@ -116,8 +169,9 @@
         <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
         <div class="trailer">
           <a href="${movie.trailer}" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" 
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" 
      alt="YouTube Icon" width="50">
+
           </a>
         </div>
       `;
@@ -126,19 +180,14 @@
       card.appendChild(infoDiv);
       container.appendChild(card);
     });
+
+    // Toggle dark/light mode
+    const toggleBtn = document.getElementById('toggleMode');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggleBtn.textContent = document.body.classList.contains('dark') ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
