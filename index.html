@@ -165,8 +165,11 @@ body.dark .runtime {
         <h2>${movie.name}</h2>
         <div class="genre">${movie.genre}</div>
         <p class="synopsis">${movie.synopsis}</p>
-        <div class="cast"><strong>Cast:</strong> ${movie.cast[0]}</div>
+        <div class="cast"><strong>Cast:</strong> ${movie.cast}</div>
         <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
+        <div class="director"><strong>Director:</strong> ${movie.director}</div>
+        <div class="release_on"><strong>Release on:</strong> ${movie.release_on}</div>
+        <div class="grade"><strong>Grade:</strong> ${movie.grade}</div>
         <div class="trailer">
           <a href="${movie.trailer}" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" 
@@ -191,4 +194,5 @@ body.dark .runtime {
 
 </body>
 </html>
+
 
