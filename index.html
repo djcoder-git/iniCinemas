@@ -393,6 +393,17 @@ body.dark .grade {
       </div>
     `;
 
+      // Toggle "Show More / Show Less" for synopsis
+const synopsisEl = infoDiv.querySelector(".synopsis");
+const toggleEl = infoDiv.querySelector(".show-more");
+
+toggleEl.addEventListener("click", () => {
+  synopsisEl.classList.toggle("expanded");
+  toggleEl.textContent = synopsisEl.classList.contains("expanded")
+    ? "Show Less"
+    : "Show More";
+});
+
     card.appendChild(posterDiv);
     card.appendChild(infoDiv);
     container.appendChild(card);
@@ -405,33 +416,8 @@ body.dark .grade {
     toggleBtn.textContent = document.body.classList.contains('dark') ? "☀️ Light Mode" : "🌙 Dark Mode";
   });
 
-  
-  // Toggle "Show More / Show Less" for synopsis
-const synopsisEl = infoDiv.querySelector(".synopsis");
-const toggleEl = infoDiv.querySelector(".show-more");
-
-toggleEl.addEventListener("click", () => {
-  synopsisEl.classList.toggle("expanded");
-  toggleEl.textContent = synopsisEl.classList.contains("expanded")
-    ? "Show Less"
-    : "Show More";
-});
 
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
