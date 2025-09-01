@@ -98,28 +98,58 @@ body.dark .grade {
       color: #444;
       font-style: italic;
     }
-   .synopsis {
+
+    .synopsis-container {
+  position: relative;
+  display: block;
+}
+
+.synopsis {
   margin: 8px 0;
   color: #555;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;   /* show 3 lines */
   -webkit-box-orient: vertical;
-  transition: max-height 0.3s ease;
+  position: relative;
+}
+
+.synopsis::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2em; /* height of fading area */
+  background: linear-gradient(to bottom, rgba(244,244,244,0), #f4f4f4 90%);
+  pointer-events: none;
+}
+
+/* Dark mode version */
+body.dark .synopsis::after {
+  background: linear-gradient(to bottom, rgba(18,18,18,0), #121212 90%);
 }
 
 .synopsis.expanded {
-  -webkit-line-clamp: unset; /* remove line clamp */
-  display: block;            /* show full text */
+  -webkit-line-clamp: unset;
+  display: block;
 }
+
+.synopsis.expanded::after {
+  display: none; /* remove fade when expanded */
+}
+
 .show-more {
   color: #e63946;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: bold;
-  margin-top: 4px;
-  display: inline-block;
+  margin-left: 6px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
+
 
     .cast, .runtime, .director, .release_on, .grade {
       font-size: 0.9rem;
@@ -393,9 +423,15 @@ body.dark .grade {
       </div>
     `;
 
-      // Toggle "Show More / Show Less" for synopsis
+// ✅ Toggle "Show More / Show Less" only if truncated
 const synopsisEl = infoDiv.querySelector(".synopsis");
 const toggleEl = infoDiv.querySelector(".show-more");
+
+requestAnimationFrame(() => {
+  if (synopsisEl.scrollHeight > synopsisEl.clientHeight) {
+    toggleEl.style.display = "inline"; 
+  }
+});
 
 toggleEl.addEventListener("click", () => {
   synopsisEl.classList.toggle("expanded");
@@ -403,6 +439,7 @@ toggleEl.addEventListener("click", () => {
     ? "Show Less"
     : "Show More";
 });
+
 
     card.appendChild(posterDiv);
     card.appendChild(infoDiv);
@@ -421,3 +458,4 @@ toggleEl.addEventListener("click", () => {
 
 </body>
 </html>
+
