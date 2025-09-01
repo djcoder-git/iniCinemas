@@ -365,7 +365,7 @@ body.dark .grade {
       <h2>${movie.name}</h2>
       <div class="genre">${movie.genre}</div>
       <p class="synopsis">${movie.synopsis}</p>
-      <div class="cast"><strong>Cast:</strong> ${movie.cast}</div>
+      <div class="cast"><strong>Cast:</strong> ${movie.cast.join(", ")}</div>
       <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
       ${extraFields}
       <div class="release_on"><strong>Release on:</strong> ${movie.release_on}</div>
@@ -393,6 +393,7 @@ body.dark .grade {
 
 </body>
 </html>
+
 
 
 
