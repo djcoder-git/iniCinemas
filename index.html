@@ -101,7 +101,7 @@ body.dark .grade {
 
     .synopsis-container {
   position: relative;
-  display: block;
+  display: inline;
 }
 
 .synopsis {
@@ -111,32 +111,11 @@ body.dark .grade {
   display: -webkit-box;
   -webkit-line-clamp: 3;   /* show 3 lines */
   -webkit-box-orient: vertical;
-  position: relative;
-}
-
-.synopsis::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 2em; /* height of fading area */
-  background: linear-gradient(to bottom, rgba(244,244,244,0), #f4f4f4 90%);
-  pointer-events: none;
-}
-
-/* Dark mode version */
-body.dark .synopsis::after {
-  background: linear-gradient(to bottom, rgba(18,18,18,0), #121212 90%);
 }
 
 .synopsis.expanded {
-  -webkit-line-clamp: unset;
-  display: block;
-}
-
-.synopsis.expanded::after {
-  display: none; /* remove fade when expanded */
+  -webkit-line-clamp: unset; /* remove line clamp */
+  display: block;            /* show full text */
 }
 
 .show-more {
@@ -144,11 +123,10 @@ body.dark .synopsis::after {
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: bold;
-  margin-left: 6px;
+  margin-left: 6px;   /* keep it inline */
   white-space: nowrap;
-  position: relative;
-  z-index: 1;
 }
+
 
 
     .cast, .runtime, .director, .release_on, .grade {
@@ -405,31 +383,35 @@ body.dark .synopsis::after {
       extraFields += `<div class="grade"><strong>Grade:</strong> ${movie.grade}</div>`;
     }
 
-    infoDiv.innerHTML = `
-      <div class="status ${movie.status === "NOW SHOWING" ? "now-showing" : ""}">${movie.status}</div>
-      <h2>${movie.name}</h2>
-      <div class="genre">${movie.genre}</div>
-      <p class="synopsis">${movie.synopsis}</p>
-      <span class="show-more">Show More</span>
-      <div class="cast"><strong>Cast:</strong> ${movie.cast.join(", ")}</div>
-      <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
-      ${extraFields}
-      <div class="release_on"><strong>Release on:</strong> ${movie.release_on}</div>
-      <div class="trailer">
-        <a href="${movie.trailer}" target="_blank">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" 
-               alt="YouTube Icon" width="50">
-        </a>
-      </div>
-    `;
+    // Wrap synopsis and button together
+infoDiv.innerHTML = `
+  <div class="status ${movie.status === "NOW SHOWING" ? "now-showing" : ""}">${movie.status}</div>
+  <h2>${movie.name}</h2>
+  <div class="genre">${movie.genre}</div>
+  <div class="synopsis-container">
+    <p class="synopsis">${movie.synopsis}</p>
+    <span class="show-more" style="display:none;">Show More</span>
+  </div>
+  <div class="cast"><strong>Cast:</strong> ${movie.cast.join(", ")}</div>
+  <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
+  ${extraFields}
+  <div class="release_on"><strong>Release on:</strong> ${movie.release_on}</div>
+  <div class="trailer">
+    <a href="${movie.trailer}" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" 
+           alt="YouTube Icon" width="50">
+    </a>
+  </div>
+`;
 
 // ✅ Toggle "Show More / Show Less" only if truncated
 const synopsisEl = infoDiv.querySelector(".synopsis");
 const toggleEl = infoDiv.querySelector(".show-more");
 
+// Run after DOM paint to check height
 requestAnimationFrame(() => {
   if (synopsisEl.scrollHeight > synopsisEl.clientHeight) {
-    toggleEl.style.display = "inline"; 
+    toggleEl.style.display = "inline"; // show button only if overflow
   }
 });
 
@@ -458,4 +440,5 @@ toggleEl.addEventListener("click", () => {
 
 </body>
 </html>
+
 
