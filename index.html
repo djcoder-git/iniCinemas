@@ -98,14 +98,29 @@ body.dark .grade {
       color: #444;
       font-style: italic;
     }
-    .synopsis {
-      margin: 8px 0;
-      color: #555;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-    }
+   .synopsis {
+  margin: 8px 0;
+  color: #555;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   /* show 3 lines */
+  -webkit-box-orient: vertical;
+  transition: max-height 0.3s ease;
+}
+
+.synopsis.expanded {
+  -webkit-line-clamp: unset; /* remove line clamp */
+  display: block;            /* show full text */
+}
+.show-more {
+  color: #e63946;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 4px;
+  display: inline-block;
+}
+
     .cast, .runtime, .director, .release_on, .grade {
       font-size: 0.9rem;
       color: #444;
@@ -365,6 +380,7 @@ body.dark .grade {
       <h2>${movie.name}</h2>
       <div class="genre">${movie.genre}</div>
       <p class="synopsis">${movie.synopsis}</p>
+      <span class="show-more">Show More</span>
       <div class="cast"><strong>Cast:</strong> ${movie.cast.join(", ")}</div>
       <div class="runtime"><strong>Runtime:</strong> ${movie.runtime}</div>
       ${extraFields}
@@ -382,6 +398,18 @@ body.dark .grade {
     container.appendChild(card);
   });
 
+  // Toggle "Show More / Show Less" for synopsis
+const synopsisEl = infoDiv.querySelector(".synopsis");
+const toggleEl = infoDiv.querySelector(".show-more");
+
+toggleEl.addEventListener("click", () => {
+  synopsisEl.classList.toggle("expanded");
+  toggleEl.textContent = synopsisEl.classList.contains("expanded")
+    ? "Show Less"
+    : "Show More";
+});
+
+
   // Toggle dark/light mode
   const toggleBtn = document.getElementById('toggleMode');
   toggleBtn.addEventListener('click', () => {
@@ -393,6 +421,7 @@ body.dark .grade {
 
 </body>
 </html>
+
 
 
 
