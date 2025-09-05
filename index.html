@@ -6,6 +6,246 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <title>ini Cinema</title>
   <style>
+/*     Slider design */
+    .slider-container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .slider-header h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 300px;
+            height: 450px;
+            margin: 0 15px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transform: scale(0.8);
+            transition: transform 0.6s ease, filter 0.6s ease;
+            cursor: pointer;
+        }
+
+        .slide.active {
+            transform: scale(1);
+            filter: none;
+        }
+
+        .slide:not(.active) {
+            filter: brightness(0.6) saturate(0.8);
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover img {
+            transform: scale(1.05);
+        }
+
+        .slide-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .slide:hover .slide-overlay,
+        .slide.active .slide-overlay {
+            transform: translateY(0);
+        }
+
+        .movie-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .movie-genre {
+            color: #b8b8b8;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .movie-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-now-showing {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            color: white;
+        }
+
+        .status-coming-soon {
+            background: linear-gradient(45deg, #ffa502, #ff8c00);
+            color: white;
+        }
+
+        .status-next-release {
+            background: linear-gradient(45deg, #2ed573, #1abc9c);
+            color: white;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .navigation:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-prev {
+            left: -30px;
+        }
+
+        .nav-next {
+            right: -30px;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transform: scale(1.2);
+        }
+
+        .movie-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .current-movie-title {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .current-movie-release {
+            color: #4ecdc4;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .current-movie-runtime {
+            color: #b8b8b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                min-width: 250px;
+                height: 380px;
+                margin: 0 10px;
+            }
+
+            .slider-header h1 {
+                font-size: 2rem;
+            }
+
+            .navigation {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .nav-prev {
+                left: -25px;
+            }
+
+            .nav-next {
+                right: -25px;
+            }
+        }
+/*     End of slider design */
     body {
       font-family: 'Poppins', sans-serif;
       background: #f4f4f4;
@@ -149,6 +389,32 @@ body.dark .grade {
 
   <h1>ini Cinemas</h1>
   <button class="toggle-btn" id="toggleMode">🌙 Dark Mode</button>
+<!--   HTML for slider -->
+  <div class="slider-container">
+        <div class="slider-header">
+            <h1>Now Playing, Next Release & Coming Soon</h1>
+        </div>
+
+        <div class="slider" id="movieSlider">
+            <button class="navigation nav-prev" id="prevBtn">‹</button>
+            <button class="navigation nav-next" id="nextBtn">›</button>
+            
+            <div class="slider-wrapper" id="sliderWrapper">
+                <!-- Slides will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="dots-container" id="dotsContainer">
+            <!-- Dots will be populated by JavaScript -->
+        </div>
+
+        <div class="movie-info" id="movieInfo">
+            <div class="current-movie-title" id="currentTitle">Loading...</div>
+            <div class="current-movie-release" id="currentRelease"></div>
+            <div class="current-movie-runtime" id="currentRuntime"></div>
+        </div>
+    </div>
+<!--     End HTML for Slider -->
 
   <div id="movies-container"></div>
 
@@ -337,6 +603,152 @@ body.dark .grade {
       "grade": null
     }
 ]
+    // Javascript for slider
+    let currentIndex = 0;
+        const slidesPerView = 3;
+        const totalSlides = movies.length;
+
+        function getStatusClass(status) {
+            return status.toLowerCase().replace(/\s+/g, '-');
+        }
+
+        function createSlides() {
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            const dotsContainer = document.getElementById('dotsContainer');
+            
+            sliderWrapper.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            movies.forEach((movie, index) => {
+                // Create slide
+                const slide = document.createElement('div');
+                slide.className = `slide ${index === currentIndex ? 'active' : ''}`;
+                
+                slide.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQ1MCIgdmlld0JveD0iMCAwIDMwMCA0NTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNDUwIiBmaWxsPSIjMjEyMTIxIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNzc3IiBmb250LXNpemU9IjE2Ij5Ob1BPc3RlclBPc3RlcjwvdGV4dD4KPC9zdmc+'">
+                    <div class="slide-overlay">
+                        <div class="movie-title">${movie.name}</div>
+                        <div class="movie-genre">${movie.genre}</div>
+                        <div class="movie-status status-${getStatusClass(movie.status)}">${movie.status}</div>
+                    </div>
+                `;
+
+                slide.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+
+                sliderWrapper.appendChild(slide);
+
+                // Create dot
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === currentIndex ? 'active' : ''}`;
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function updateSlider() {
+            const sliderWrapper = document.getElementById('sliderWrapper');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+
+            // Update slider position
+            const slideWidth = 330; // 300px width + 30px margin
+            const offset = -currentIndex * slideWidth + (sliderWrapper.parentElement.clientWidth / 2) - (slideWidth / 2);
+            sliderWrapper.style.transform = `translateX(${offset}px)`;
+
+            // Update active states
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentIndex);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+
+            // Update movie info
+            updateMovieInfo();
+        }
+
+        function updateMovieInfo() {
+            const movie = movies[currentIndex];
+            document.getElementById('currentTitle').textContent = movie.name;
+            document.getElementById('currentRelease').textContent = `Release Date: ${movie.release_on}`;
+            document.getElementById('currentRuntime').textContent = `Runtime: ${movie.runtime}`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Auto-play functionality
+        let autoPlayInterval;
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        // Pause auto-play on hover
+        const slider = document.getElementById('movieSlider');
+        slider.addEventListener('mouseenter', stopAutoPlay);
+        slider.addEventListener('mouseleave', startAutoPlay);
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Initialize
+        createSlides();
+        updateSlider();
+        startAutoPlay();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateSlider();
+        });
+    // End of Javascript for slider
     
     const container = document.getElementById('movies-container');
 
@@ -427,6 +839,7 @@ toggleEl.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
