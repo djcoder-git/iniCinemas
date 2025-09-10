@@ -673,188 +673,205 @@
 
   <script>
     const movies = [
-    {
-      "status": "NOW SHOWING",
-      "name": "Maagne Raja",
-      "genre": "Comedy",
-      "synopsis": "Kuber Sharma aka Maagne,  debt-ridden man drowning under the weight of financial burdens, sees no way out of his grim reality—until a sudden and mysterious windfall changes everything. But as Sharma attempts to retreat into a quiet existence, his newfound fortune draws attention from people.Caught in a web of deception, greed, and moral dilemmas, Maagne must confront a harsh truth: escaping poverty was just the beginning—surviving wealth is the real challenge",
-      "director": null,
-      "release_on": "August 22, 2025",
-      "cast": ["Kedar Ghimire", "Barsha Shiwakoti", "Wilson Bikram Rai", "Shishir Wangdel"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/MR_620x780_249131.png",
-      "runtime": "2 hours 29 mins",
-      "trailer": "https://youtu.be/x2QZl1dqWbY?feature=shared",
-      "grade": "U"
-    },
-    {
-      "status": "NOW SHOWING",
-      "name": "Koshedhunga",
-      "genre": "Drama",
-      "synopsis": "Koshedhunga follows Sital, a woman torn between love, hardship, and survival in a mid-hill village of Nepal, as her husband migrates to the Gulf-exploring sacrifice, unemployment, and the price of dreams.",
-      "director": null,
-      "release_on": "August 28, 2025",
-      "cast": ["Surakshya Panta", "Niti Shah", "Reecha Sharma", "Aaryan Sigdel"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/POSTER_567486.png",
-      "runtime": "2 hours 22 mins",
-      "trailer": "https://youtu.be/SYZ1EKN-ClU?si=AJv4H_gYOuq6cFRs",
-      "grade": "U"
-    },
-    {
-      "status": "NOW SHOWING",
-      "name": "Gunyo Cholo",
-      "genre": "Drama",
-      "synopsis": "Gulabi, a trans-woman is groomed by his patriarchal father to join the military. His father disowns him, leading him to live a life of prostitution in Kathmandu.",
-      "director": null,
-      "release_on": "August 29, 2025",
-      "cast": ["Najir Husen", "Bishal Pahari", "Susil Sitaulam", "Sanchita Luitel"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/POSTER_960015.png",
-      "runtime": "2 hours 7 mins",
-      "trailer": "https://youtu.be/3Yar3NOF7Gs?si=3OWpiVnbD1yERPjW",
-      "grade": "P/G"
-    },
-    {
-      "status": "NOW SHOWING",
-      "name": "The Conjuring Last Rites",
-      "genre": "Horror, Mystery, Thriller",
-      "synopsis": "Paranormal investigators Ed and Lorraine Warren take on one last terrifying case involving mysterious entities they must confront.",
-      "director": null,
-      "release_on": "September 05, 2025",
-      "cast": ["Vera Farmiga", "Patrick Wilson", "Ben Hardy", "Elliot Cowan"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/TheConjuringLastRites_620x780_463998.png",
-      "runtime": "2 hours 15 mins",
-      "trailer": "https://youtu.be/bMgfsdYoEEo?si=9vmBUr1I6mtxJyTr",
-      "grade": "A"
-    },
-    {
-      "status": "NOW SHOWING",
-      "name": "Reemai",
-      "genre": "Social drama",
-      "synopsis": "Rimai is an upcoming Nepali social drama film directed by Khil Bahadur Gurung and written by Upendra Subba. The film stars Dayahang Rai and Rishma Gurung, among others, with shooting currently taking place in Gorkha, Siranchowk.",
-      "director": null,
-      "release_on": "September 05, 2025",
-      "cast": ["Dayahang Rai", "Gaumaya Gurung", "Rishma Gurung", "Arpan Thapa", "Buddhi Tamang"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/Rimai_620x780_N_638464.png",
-      "runtime": "2 hours 15 mins",
-      "trailer": "https://youtu.be/W9vHNiRe1Dw?feature=shared",
-      "grade": "U"
-    },
-    {
-      "status": "NOW SHOWING",
-      "name": "Baaghi 4",
-      "genre": "Action, Drama, Thriller",
-      "synopsis": "Tiger Shroff returns as Ronnie, who is now on a darker, more intense mission. He is recruited by a secret international agency to stop a global cyber-terrorist network led by Sanjay Dutt.",
-      "director": null,
-      "release_on": "September 05, 2025",
-      "cast": ["Sonam Bajwa", "Tiger Shroff", "Sanjay Dutt"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/Poster_365091.png",
-      "runtime": "2 hours 43 mins",
-      "trailer": "https://youtu.be/58909OjAfeg?si=vn8RCwpQ2EyS7Yv-",
-      "grade": "A"
-    },
-    {
-      "status": "NEXT RELEASE",
-      "name": "Demon Slayer - Kimetsu no Yaiba - The Movie Infinity Castle",
-      "genre": "Anime, Dark Fantasy, Action, Adventure, Animation",
-      "synopsis": "The Demon Slayer Corps are drawn into the Infinity Castle, where Tanjiro, Nezuko, and the Hashira face terrifying Upper Rank demons in a desperate fight as the final battle against Muzan Kibutsuji begins.",
-      "director": null,
-      "release_on": "September 12, 2025",
-      "cast": ["Natsuki Hanae", "Saori Hayami", "Akari Kito", "Yoshitsugu Matsuka", "Hiro Shimono", "Reina Ueda"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/DS_620x780_410309.png",
-      "runtime": "2 hours 35 mins",
-      "trailer": "https://youtu.be/x7uLutVRBfI?feature=shared",
-      "grade": "A"
-    },
-    {
-      "status": "NEXT RELEASE",
-      "name": "Abhimanyu Chapter 1",
-      "genre": "Social Thriller, Suspense, Mystery, Drama",
-      "synopsis": "Abhimanyu – Chapter 1 is a gripping social thriller that exposes the brutal reality of dowry culture through a suspenseful narrative filled with twists, emotions, and a race for justice.",
-      "director": "Sushant Gautam",
-      "release_on": "September 12, 2025",
-      "cast": ["Kameshwor Chaurasiya", "Gaumaya Gurung", "Shishir Wangdel", "Sarita Giri", "Laxmi Bardewa", "Prakash Dahal"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Abhimanyu_620x780_256472.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/airGBX1Lytk?feature=shared",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Jaari 2",
-      "genre": "Drama",
-      "synopsis": "Jaari 2 follows Namsang and Hangma as they embark on a new chapter of married life. At the heart of their journey is the Chyabrung, the Limbu community's cherished drum, whose rhythms echo through the hills as a symbol of love, identity, and resilience. Guided by its beats, Namsang learns to embrace companionship, humility, and commitment while navigating personal struggles and the turbulent tides of Nepal's history.",
-      "director": "Upendra Subba",
-      "release_on": "September 19, 2025",
-      "cast": ["Dayahang Rai", "Miruna Magar", "Bijay Baral", "Buddhi Tamang"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/poster_550449.png",
-      "runtime": "2 hours 15 mins",
-      "trailer": "https://youtu.be/5O3K8JXch1E?si=9dpu3fE6d9fXaRDs",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Maitighar",
-      "genre": "Social Drama",
-      "synopsis": "Purnima, a kind village girl raised by her uncle, falls in love with Sonam, a boy without caste or background. Her uncle disapproves and arranges her marriage to Vinay, the son of a wealthy man.\n\nBut her grandfather, Sant Bahadur, supports her love and makes a bold request: the groom must follow an old tradition choose his bride from a group of veiled girls without seeing her face. If he picks wrong, he must stay as a ghar jamai in the bride's home.\n\nChandra, Vinay's father, agrees. Though unhappy, Vinay and the matchmaker Haribaje secretly visit the village to uncover the real bride. But in a village full of secrets and emotions, finding true love becomes a challenge of the heart.",
-      "director": "Milan Tamang",
-      "release_on": "September 29, 2025",
-      "cast": ["Dhiraj Magar", "Kedar Prasad Ghimire", "Prakash Saput", "Upasana Singh Thakuri"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Maitighar_620x780_853894.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/1LPA0qSJTBs?si=LcmRqSmpiKSVWQqQ",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Balidan",
-      "genre": "Action, Drama",
-      "synopsis": "Balidan is not just a tale of action\nit is the unbreakable bond between a mother and her son,\na saga of vengeance written in blood and tears,\nand the eternal heartbeat of every Nepali\nwho loves their motherland more than life itself.",
-      "director": "Santosh Sen",
-      "release_on": "September 29, 2025",
-      "cast": ["Samir Bhatta", "Saugat Malla", "Reecha Sharma", "Arpan Thapa"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Balidan_620x780_470917.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/I2YCQa55Apw?feature=shared",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Hari Bahadur Ko Jutta",
-      "genre": "Drama",
-      "synopsis": "Hari bahadur ko Jutta  is a Nepali comedy Drama film that humorously explores social themes such as class division, economic disparity, and the everyday struggles of ordinary people.",
-      "director": "Dipendra K. Khanal",
-      "release_on": "September 29, 2025",
-      "cast": ["Hari Bamsha Acharya", "Swastima Khadka", "Prakash Saput", "Priyanka Karki"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/HBKJ_620x780_805317.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/obOLcRBXhBE?feature=shared",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Tron: Ares",
-      "genre": "Cyberpunk, Action, Adventure, Sci-Fi",
-      "synopsis": "A highly sophisticated Program, Ares, is sent from the digital world into the real world on a dangerous mission.",
-      "director": "Joachim Rønning",
-      "release_on": "October 10, 2025",
-      "cast": ["Evan Peters", "Gillian Anderson", "Jeff Bridges"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/TA_620x780_846682.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/YShVEXb7-ic?si=f0GpnT1Yi1-Or5Xo",
-      "grade": null
-    },
-    {
-      "status": "COMING SOON",
-      "name": "Predator: Badlands",
-      "genre": "Alien Invasion, Action, Adventure, Sci-Fi, Thriller",
-      "synopsis": "A young Predator outcast from his clan finds an unlikely ally on his journey in search of the ultimate adversary.",
-      "director": "Dan Trachtenberg",
-      "release_on": "November 07, 2025",
-      "cast": ["Elle Fanning", "Dimitrius Schuster-Koloamatangi"],
-      "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/PB_620x780_684785.png",
-      "runtime": "2 hours",
-      "trailer": "https://youtu.be/43R9l7EkJwE?si=JNK9FVDNbhlCQWf7",
-      "grade": null
-    }
+  {
+    "status": "NOW SHOWING",
+    "name": "Demon Slayer - Kimetsu no Yaiba - The Movie Infinity Castle",
+    "genre": "Anime, Dark Fantasy, Action, Adventure, Animation",
+    "synopsis": "The Demon Slayer Corps are drawn into the Infinity Castle, where Tanjiro, Nezuko, and the Hashira face terrifying Upper Rank demons in a desperate fight as the final battle against Muzan Kibutsuji begins.",
+    "director": null,
+    "release_on": "September 12, 2025",
+    "cast": [
+      "Natsuki Hanae",
+      "Saori Hayami",
+      "Akari Kito",
+      "Yoshitsugu Matsuka",
+      "Hiro Shimono",
+      "Reina Ueda"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/Image/DS_620x780_410309.png",
+    "runtime": "2 hours 35 mins",
+    "trailer": "https://youtu.be/x7uLutVRBfI?feature=shared",
+    "grade": "A"
+  },
+  {
+    "status": "NEXT RELEASE",
+    "name": "Abhimanyu Chapter 1",
+    "genre": "Social Thriller, Suspense, Mystery, Drama",
+    "synopsis": ""Abhimanyu – Chapter 1" is a gripping social thriller that exposes the brutal reality of dowry culture through a suspenseful narrative filled with twists, emotions, and a race for justice.",
+    "director": "Sushant Gautam",
+    "release_on": "September 12, 2025",
+    "cast": [
+      "Kameshwor Chaurasiya",
+      "Gaumaya Gurung",
+      "Shishir Wangdel",
+      "Sarita Giri",
+      "Laxmi Bardewa",
+      "Prakash Dahal"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Abhimanyu_620x780_256472.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/airGBX1Lytk?feature=shared",
+    "grade": null
+  },
+  {
+    "status": "NEXT RELEASE",
+    "name": "NO DORAI",
+    "genre": "Drama",
+    "synopsis": "In a small beach town in Bangladesh, fearless Ayesha confronts social prohibition and violent opposition from her poverty-ridden family to surf. Like few other youngsters, she and her best friend Sohel are trained by self-made Bangladeshi surfer, Amir. As this unusual surfing enthusiasm gets international attention from surfing community and documentary film makers, fund money generates jealousy, squabbles, and power tussles. While surfing brings newfound fame and glory to Sohel, it is the 'prohibited' love for surfing that brings forced marriage and a life of misery for Ayesha. After seeking an extravagant, reckless lifestyle in the capital city, derailed Sohel returns back to Cox's Bazar, where their passion for surfing reunites them and unleashes a new hope for surfing in the small beach town.",
+    "director": "Taneem Rahman Angshu",
+    "release_on": "September 12, 2025",
+    "cast": [
+      "Sunerah Binte Kamal",
+      "Sariful Razz",
+      "Nasir Uddin Khan",
+      "Sayed Babu"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/poster_297137.png",
+    "runtime": "2 hours 30 mins",
+    "trailer": "https://youtu.be/EUnQZTofMo0?si=6HP9fCYmEp4RBVtZ",
+    "grade": null
+  },
+  {
+    "status": "NEXT RELEASE",
+    "name": "Mirai",
+    "genre": "Action, Sci-Fi, Thriller",
+    "synopsis": "A warrior is tasked with the protection nine sacred scriptures that can turn any mortal into a deity",
+    "director": "Karthik Gattamneni, Anil Anand",
+    "release_on": "September 12, 2025",
+    "cast": [
+      "Teja Sajja",
+      "Manoj Kumar Manchu",
+      "Ritika Nayak",
+      "Jagapathi Babu",
+      "Shriya Saran"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/poster_834526.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/dYnIQriEp_c?si=KYs3w-oItZjentIE",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Jaari 2",
+    "genre": "Drama",
+    "synopsis": "Jaari 2 follows Namsang and Hangma as they embark on a new chapter of married life. At the heart of their journey is the Chyabrung, the Limbu community's cherished drum, whose rhythms echo through the hills as a symbol of love, identity, and resilience. Guided by its beats, Namsang learns to embrace companionship, humility, and commitment while navigating personal struggles and the turbulent tides of Nepal's history.",
+    "director": "Upendra Subba",
+    "release_on": "September 19, 2025",
+    "cast": [
+      "Dayahang Rai",
+      "Miruna Magar",
+      "Bijay Baral",
+      "Buddhi Tamang"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/poster_550449.png",
+    "runtime": "2 hours 15 mins",
+    "trailer": "https://youtu.be/5O3K8JXch1E?si=9dpu3fE6d9fXaRDs",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Maitighar",
+    "genre": "Social Drama",
+    "synopsis": "Purnima, a kind village girl raised by her uncle, falls in love with Sonam, a boy without caste or background. Her uncle disapproves and arranges her marriage to Vinay, the son of a wealthy man.\n\nBut her grandfather, Sant Bahadur, supports her love and makes a bold request: the groom must follow an old tradition choose his bride from a group of veiled girls without seeing her face. If he picks wrong, he must stay as a ghar jamai in the bride's home.\n\nChandra, Vinay's father, agrees. Though unhappy, Vinay and the matchmaker Haribaje secretly visit the village to uncover the real bride. But in a village full of secrets and emotions, finding true love becomes a challenge of the heart.",
+    "director": "Milan Tamang",
+    "release_on": "September 29, 2025",
+    "cast": [
+      "Dhiraj Magar",
+      "Kedar Prasad Ghimire",
+      "Prakash Saput",
+      "Upasana Singh Thakuri"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Maitighar_620x780_853894.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/1LPA0qSJTBs?si=LcmRqSmpiKSVWQqQ",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Hari Bahadur Ko Jutta",
+    "genre": "Drama",
+    "synopsis": "Hari bahadur ko Jutta  is a Nepali comedy Drama film that humorously explores social themes such as class division, economic disparity, and the everyday struggles of ordinary people.",
+    "director": "Dipendra K. Khanal",
+    "release_on": "September 29, 2025",
+    "cast": [
+      "Hari Bamsha Acharya",
+      "Swastima Khadka",
+      "Prakash Saput",
+      "Priyanka Karki"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/HBKJ_620x780_805317.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/obOLcRBXhBE?feature=shared",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Balidan",
+    "genre": "Action, Drama",
+    "synopsis": ""Balidan" is not just a tale of action\nit is the unbreakable bond between a mother and her son,\na saga of vengeance written in blood and tears,\nand the eternal heartbeat of every Nepali\nwho loves their motherland more than life itself.",
+    "director": "Santosh Sen",
+    "release_on": "September 29, 2025",
+    "cast": [
+      "Samir Bhatta",
+      "Saugat Malla",
+      "Reecha Sharma",
+      "Arpan Thapa"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Balidan_620x780_470917.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/I2YCQa55Apw?feature=shared",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Kantara A Legend: Chapter 1",
+    "genre": "Action, Thriller",
+    "synopsis": "Exploring the origins of Kaadubettu Shiva during the Kadamba dynasty era, it delves into the untamed wilderness and forgotten lore surrounding his past.",
+    "director": "Rishab Shetty",
+    "release_on": "October 02, 2025",
+    "cast": [
+      "Rukmini Vasanth",
+      "Rishab Shetty",
+      "Gulshan Devaiah"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/Untitled-1_593012.jpg",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/q7GrhU3aRMU?si=6n-OQztA55AzVGoc",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Tron: Ares",
+    "genre": "Cyberpunk, Action, Adventure, Sci-Fi",
+    "synopsis": "A highly sophisticated Program, Ares, is sent from the digital world into the real world on a dangerous mission.",
+    "director": "Joachim Rønning",
+    "release_on": "October 10, 2025",
+    "cast": [
+      "Evan Peters",
+      "Gillian Anderson",
+      "Jeff Bridges"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/TA_620x780_846682.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/YShVEXb7-ic?si=f0GpnT1Yi1-Or5Xo",
+    "grade": null
+  },
+  {
+    "status": "COMING SOON",
+    "name": "Predator: Badlands",
+    "genre": "Alien Invasion, Action, Adventure, Sci-Fi, Thriller",
+    "synopsis": "A young Predator outcast from his clan finds an unlikely ally on his journey in search of the ultimate adversary.",
+    "director": "Dan Trachtenberg",
+    "release_on": "November 07, 2025",
+    "cast": [
+      "Elle Fanning",
+      "Dimitrius Schuster-Koloamatangi"
+    ],
+    "poster": "https://inicinemas.com/Modules/CineUploadFiles/Movie/image/PB_620x780_684785.png",
+    "runtime": "2 hours",
+    "trailer": "https://youtu.be/43R9l7EkJwE?si=JNK9FVDNbhlCQWf7",
+    "grade": null
+  }
 ]
 
     // Javascript for slider
@@ -1134,4 +1151,5 @@
 
 </body>
 </html>
+
 
